@@ -7,6 +7,11 @@ from tensorflow.keras.layers import Dense, Bidirectional, LSTM, GRU, SimpleRNN
 import data_prep
 
 
+def root_mean_error(y_true, y_pred):
+    return tf.sqrt(tf.reduce_mean(tf.math.squared_difference(y_true, y_pred)))
+
+## we should consider normalizing the data
+
 class RunModel:
 
     def __init__(self,X_train, X_test, y_train, y_test):

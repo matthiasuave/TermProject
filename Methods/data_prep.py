@@ -56,7 +56,7 @@ class DataCleaning:
 
         return df
 
-    def resequenceData(self, filename='Data/cleaned.csv'):
+    def resequenceData(self, filename='Methods/Data/cleaned_1.csv'):
         dfs = self.openCSV()
         dfs.reset_index(inplace=True)
         a = len(dfs)
@@ -83,7 +83,7 @@ class DataCleaning:
             reshapedX.append(X[i:i+step_length])
         return reshapedX,y
 
-    def SampleValidSequences(self, numTrainSequences=15, numTestSequences=5, filename='Data/cleaned_1.csv'):
+    def SampleValidSequences(self, numTrainSequences=200, numTestSequences=40, filename='Methods/Data/cleaned_1.csv'):
 
         samplingDF = pd.read_csv(filename)
         new_df = samplingDF.groupby('series_id').count()

@@ -36,11 +36,11 @@ class DataCleaning:
         ## fileNames stores smaller shards of data
         return fileNames
 
-    def openCSV(self):
+    def openCSV(self,size):
         '''opens up a CSV shard(s) with given filename index and returns a processed dataframe'''
         fileNames=self.import_and_store()
         df = pd.read_csv(fileNames[0])
-        for i in range(1,len(fileNames)-1):
+        for i in range(1,size):
             temp_df = pd.read_csv(fileNames[i])
             df = pd.concat([df,temp_df])
         
@@ -56,8 +56,10 @@ class DataCleaning:
 
         return df
 
-    def resequenceData(self, filename='Methods/Data/cleaned_1.csv'):
-        dfs = self.openCSV()
+    def resequenceData(self, size=2, filename='Methods/Data/cleaned_1.csv'):
+        '''resets all the data with the original file from the public dataset
+        size is number of shards to include on the new sample'''
+        dfs = self.openCSV(size)
         dfs.reset_index(inplace=True)
         a = len(dfs)
         seed = np.random.randint(10000,80000)

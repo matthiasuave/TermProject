@@ -44,6 +44,12 @@ To install the required libraries for the project run `pip install -r requiremen
 <br>
 `seriesToTimeSeries` is a helper function that restructures the data into the format X,y where X is an n x m array, where n is the number of samples, and m is the length of each sample set by the step_length. y is defaulted to be 30 minutes since the last reading in X and is the target variable. <br>
 `SampleValidSequences` is the main function used by the modeling steps. It pulls sequences randomly from the CSV file created in `resequenceData` that can be used for training, test, and validation. numTrainSequences, and numTestSequences are defaulted to 200 and 40 respectively. Returns `X_train`, `X_test`, `y_train`, `y_test`. <br>
+<strong> For the purposes of plotting, testing with just one sample allows to see visually how the model performs against a single series (typically one patient for ~8hrs of readings)</strong>
+<br>
+If you are going to re-build the project from scratch you would need to create a DataCleaning class object, passing the filename, and shard it, followed by pre-processing. The following would achieve this:
+`new_data = DataCleaning()
+new_data.resequenceData()
+`
 
 
 ## Running the Model(s)

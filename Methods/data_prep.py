@@ -5,11 +5,16 @@ from matplotlib import pyplot as plt
 import os
 from random import randrange
 import random
+import warnings
+
+from pandas.core.common import SettingWithCopyWarning
+
+warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
 
 
 class DataCleaning:
 
-    def __init__(self, filename='Data/DeviceCGM.txt'):
+    def __init__(self, filename='Methods/Data/DeviceCGM.txt'):
         self.filename = filename
 
     def import_and_store(self):
@@ -30,8 +35,8 @@ class DataCleaning:
         ## Create shards for easier data management
         fileNames = []
         for id, df_i in  enumerate(np.array_split(cgmData, 12)):
-            df_i.to_csv('Data/CGM_{id}.csv'.format(id=id))
-            fileNames.append('Data/CGM_{id}.csv'.format(id=id))
+            df_i.to_csv('Methods/Data/CGM_{id}.csv'.format(id=id))
+            fileNames.append('Methods/Data/CGM_{id}.csv'.format(id=id))
 
         ## fileNames stores smaller shards of data
         return fileNames
@@ -59,6 +64,7 @@ class DataCleaning:
     def resequenceData(self, size=2, filename='Methods/Data/cleaned_1.csv'):
         '''resets all the data with the original file from the public dataset
         size is number of shards to include on the new sample'''
+        print('Warning - This function will take a while to complete as it is creating sequences based on multiple variables in the data file. Please be patient.')
         dfs = self.openCSV(size)
         dfs.reset_index(inplace=True)
         a = len(dfs)

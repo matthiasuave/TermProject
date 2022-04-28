@@ -3,7 +3,7 @@ Final project for DS8013
 
 
 # Required Libraries
-To install the required libraries for the project run `pip install .` from the `TERMPROJECT` directory. This will install all dependencies for the models to run.
+To install the required libraries for the project run `pip install -r requirements.txt` from the `TERMPROJECT` directory. This will install all dependencies for the models to run.
 
 
 

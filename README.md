@@ -3,12 +3,12 @@ Final project for DS8013
 
 
 # Required Libraries
-pip install numpy 
-pip install pandas 
-pip install chardet 
-pip install matplotlib 
-pip install os
-pip install random
+To install the required libraries for the project run `pip install .` from the `TERMPROJECT` directory. This will install all dependencies for the models to run.
 
 
-# Testing some updates
+
+# Running the Model
+The driver to run all the models in the project can be found in `main.py` in the `TERMPROJECT` directory.
+To run the models and view the results, run `python main.py` from the `TERMPROJECT` directory.
+This will train all the models as well produce the architecture, losses, metric, and RMSE plot for the models. 
+It also saves png files of how each models performs on the test dataset.

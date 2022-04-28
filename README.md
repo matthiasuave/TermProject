@@ -39,7 +39,11 @@ To install the required libraries for the project run `pip install -r requiremen
 
 `DataCleaning` is the Class containing all the prep methods. See the following example to describe how DeviceCGM is turned into prepared Training and Validation samples.<br>
 `import_and_store()` takes DeviceCGM.txt, reads it to a dataframe and writes it to the same directory 'Data/' as CSV files and shards it based on size determined (currently set at 12 shards), returns `fileNames` which is a list object of the shards names. This function should only be used if starting from scratch with the original data. Otherwise skip this. <br>
-
+`openCSV` is a function that will take a CSV shard(s) based on the list of files in `fileNames` and concatenate them, and preprocess them with updates to date, creating a series_id, and also formatting the values accordingly.<br>
+`resequenceData` is a function that will create sequences of readings that are all 5 minutes apart. This function ensures that the input variable is continuous. Once a sequence is complete, the function increments and continues assigning readings to sequences (based on patient and time since last reading). For most modeling everything up to this point can be skipped, where the last part of this function saves the processed data to CSV and that CSV is used for input for all modeling.
+<br>
+`seriesToTimeSeries` is a helper function that restructures the data into the format X,y where X is an n x m array, where n is the number of samples, and m is the length of each sample set by the step_length. y is defaulted to be 30 minutes since the last reading in X and is the target variable. <br>
+`SampleValidSequences` is the main function used by the modeling steps. It pulls sequences randomly from the CSV file created in `resequenceData` that can be used for training, test, and validation. numTrainSequences, and numTestSequences are defaulted to 200 and 40 respectively. Returns `X_train`, `X_test`, `y_train`, `y_test`. <br>
 
 
 # Testing some updates

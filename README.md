@@ -46,9 +46,15 @@ To install the required libraries for the project run `pip install -r requiremen
 `SampleValidSequences` is the main function used by the modeling steps. It pulls sequences randomly from the CSV file created in `resequenceData` that can be used for training, test, and validation. numTrainSequences, and numTestSequences are defaulted to 200 and 40 respectively. Returns `X_train`, `X_test`, `y_train`, `y_test`. <br>
 
 
-# Testing some updates
-# Running the Model
+## Running the Model(s)
 The driver to run all the models in the project can be found in `main.py` in the `TERMPROJECT` directory.
 To run the models and view the results, run `python main.py` from the `TERMPROJECT` directory.
 This will train all the models as well produce the architecture, losses, metric, and RMSE plot for the models. 
-It also saves png files of how each models performs on the test dataset.
+It also saves png files of how each models performs on the test dataset.<br>
+Each model function has the same structure within the models.py file.<br>
+Sequential model is constructed<br>
+Layers are added<br>
+Model is compiled<br>
+History is built from fitting the model <br>
+Create a plot of the model and save it to file<br>
+Store the metrics in a dataframe for later comparison <br>
